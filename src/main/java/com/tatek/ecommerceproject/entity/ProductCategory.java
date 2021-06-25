@@ -1,4 +1,25 @@
 package com.tatek.ecommerceproject.entity;//Created on: #6/22/2021
-//Author Tatek Ahmed 
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.Set;
+
+//Author Tatek Ahmed
+@Entity
+@Table(name = "product_category")
+@Getter
+@Setter
 public class ProductCategory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "category_name")
+    private String categoryName;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private Set<Product> products;
 }
